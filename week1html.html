@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 1 HTML Assignment</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f4fbf3;
+        color: #46624a;
+        min-height: 100vh;
+        padding: 30px;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .header {
+        display: block;
+        text-align: center;
+        margin-bottom: 30px;
+        background-color: #e6f7e4;
+        border: 3px solid #7dbb7f;
+        border-radius: 18px;
+        padding: 24px;
+        width: 100%;
+      }
+
+      .header h1 {
+        font-size: 2.5rem;
+        color: #5c8a5e;
+        margin-bottom: 10px;
+      }
+
+      .photo-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 18px;
+        margin: 25px 0 10px;
+      }
+
+      .photo-gallery img {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+        display: block;
+        border-radius: 18px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+        border: 1px solid #d6edd6;
+        background-color: #ffffff;
+      }
+
+      .intro-section,
+      .video-section,
+      .form-section {
+        background-color: #ffffff;
+        border: 1px solid #d6edd6;
+        border-radius: 18px;
+        padding: 24px;
+        margin-bottom: 25px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+      }
+
+      .intro-section h2,
+      .form-section h2,
+      .video-section h2 {
+        color: #5c8a5e;
+        margin-bottom: 12px;
+        font-size: 1.6rem;
+      }
+
+      .intro-section h3 {
+        color: #5c8a5e;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+      }
+
+      .intro-section p,
+      .form-section p,
+      .video-section p {
+        line-height: 1.7;
+        margin-bottom: 14px;
+      }
+
+      .intro-section a,
+      .video-fallback a {
+        color: #d07a3b;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .intro-section a:hover,
+      .video-fallback a:hover {
+        text-decoration: underline;
+      }
+
+      .family-notes {
+        background-color: #f8fff6;
+        border-radius: 14px;
+        padding: 16px;
+        margin-top: 14px;
+      }
+
+      .family-notes ul {
+        padding-left: 20px;
+        line-height: 1.8;
+      }
+
+      .top-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+      }
+
+      .search-box {
+        flex: 1;
+        min-width: 220px;
+      }
+
+      .search-box input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #b9ddba;
+        border-radius: 14px;
+        font-size: 1rem;
+        font-family: 'Poppins', sans-serif;
+        color: #46624a;
+        background-color: #ffffff;
+      }
+
+      .add-btn {
+        background-color: #f4c542;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      .add-btn:hover {
+        background-color: #e0b233;
+        transform: translateY(-2px);
+      }
+
+      .recipe-inline-label {
+        display: inline;
+        font-weight: 700;
+        color: #d07a3b;
+      }
+
+      .recipe-inline-name {
+        display: inline;
+        font-weight: 600;
+        color: #5c8a5e;
+      }
+
+      .video-wrapper {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        border-radius: 16px;
+        margin-top: 16px;
+      }
+
+      .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        border-radius: 16px;
+      }
+
+      .video-fallback {
+        margin-top: 14px;
+        font-size: 0.95rem;
+      }
+
+      .signup-form {
+        display: grid;
+        gap: 16px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-group label {
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #4f7452;
+      }
+
+      .signup-form input {
+        padding: 12px 14px;
+        border: 2px solid #b9ddba;
+        border-radius: 14px;
+        font-size: 1rem;
+        font-family: 'Poppins', sans-serif;
+        color: #46624a;
+        background-color: #ffffff;
+      }
+
+      .signup-form input:focus {
+        outline: none;
+        border-color: #7dbb7f;
+        box-shadow: 0 0 0 3px rgba(125, 187, 127, 0.2);
+      }
+
+      .helper-text {
+        margin-top: 6px;
+        font-size: 0.85rem;
+        color: #6f9a72;
+      }
+
+      .submit-btn {
+        background-color: #ff8c69;
+        color: white;
+        border: none;
+        border-radius: 16px;
+        padding: 14px 22px;
+        font-size: 1rem;
+        font-weight: 600;
+        font-family: 'Poppins', sans-serif;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        width: fit-content;
+      }
+
+      .submit-btn:hover {
+        background-color: #f2764f;
+        transform: translateY(-2px);
+      }
+
+      .recipe-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+      }
+
+      .attribution {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #d6edd6;
+        font-size: 0.9rem;
+        color: #6f9a72;
+        line-height: 1.8;
+      }
+
+      @media (max-width: 600px) {
+        .header h1 {
+          font-size: 2rem;
+        }
+
+        .top-bar {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .add-btn,
+        .submit-btn {
+          width: 100%;
+        }
+
+        .photo-gallery img {
+          height: 220px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>Ma boîte à recettes</h1>
+
+        <div class="photo-gallery">
+          <img
+            src="VS Legumes.jpg"
+            alt="Sacks filled with colorful legumes and beans"
+          />
+          <img
+            src="VS mixed berries.jpg"
+            alt="A mix of strawberries, raspberries, blueberries, and blackberries"
+          />
+          <img
+            src="VS Mixed Vegetables.jpg"
+            alt="An assortment of fresh vegetables including peppers, carrots, potatoes, and broccoli"
+          />
+        </div>
+      </header>
+
+      <section class="intro-section">
+        <h2>Family Favorite Vegan Recipes</h2>
+
+        <p>
+          This site helps me keep track of each family member's favorite vegan recipes,
+          from quick weekday lunches to special occasion dinners. It makes it easier to
+          remember the meals everyone loves and keep our plant-based cooking ideas all
+          in one organized place.
+        </p>
+
+        <p>
+          Visit
+          <a href="www.https://minimalistbaker.com/recipe-index/?fwp_special-diet=vegan/" target="_blank" rel="noopener noreferrer">
+            Minimalist Baker
+          </a>
+          for more vegan meal inspiration.
+        </p>
+
+        <div class="family-notes">
+          <h3>What We Track</h3>
+          <ul>
+            <li>Mom's favorite comfort meals</li>
+            <li>Dad's favorite hearty vegan dinners</li>
+            <li>Kids' favorite snacks and desserts</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="video-section">
+        <h2>
+          <span class="recipe-inline-label">Featured Recipe:</span>
+          <span class="recipe-inline-name"> Portobello Fajita Tacos with Chipotle Pecan Pesto (Minimalist Baker Recipe)</span>
+        </h2>
+
+        <p>
+          Watch this featured recipe video for plant-based meal inspiration.
+        </p>
+
+        <div class="video-wrapper">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/q0vlCLosR6Y?si=tII5qUznN4lgs_EK"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <p class="video-fallback">
+          If the video does not load, 
+          <a href="https://www.youtube.com/watch?v=q0vlCLosR6Y" target="_blank" rel="noopener noreferrer">
+            open the video on YouTube
+          </a>.
+        </p>
+      </section>
+
+      <section class="top-bar">
+        <div class="search-box">
+          <input type="text" placeholder="Search recipes..." />
+        </div>
+        <button class="add-btn">+ Add Recipe</button>
+      </section>
+
+      <section class="form-section">
+        <h2>Join Our Community</h2>
+        <p>
+          Fill out this form to save your information and stay connected with family favorite vegan recipes.
+        </p>
+
+        <form class="signup-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="birthdate">Birth Date</label>
+            <input
+              type="date"
+              id="birthdate"
+              name="birthdate"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Enter your phone number"
+              pattern="([0-9]{3}-[0-9]{3}-[0-9]{4})|(\\([0-9]{3}\\) [0-9]{3}-[0-9]{4})"
+              title="Please enter a phone number in the format 123-456-7890 or (123) 456-7890"
+              required
+            />
+            <p class="helper-text">Formats: 123-456-7890 or (123) 456-7890</p>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}"
+              title="Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, and a number."
+              required
+            />
+            <p class="helper-text">
+              Must be at least 8 characters and include uppercase, lowercase, and a number.
+            </p>
+          </div>
+
+          <button type="submit" class="submit-btn">Submit Form</button>
+        </form>
+      </section>
+
+      <section class="recipe-grid">
+        <!-- Recipe cards removed -->
+      </section>
+
+      
+    </div>
+  </body>
+</html>
